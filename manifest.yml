@@ -8,6 +8,6 @@ applications:
   - cloud-bus
   - service-registry
   - circuit-breaker-dashboard
-    env:
-  #    SPRING_PROFILES_ACTIVE: c2c
-      JAVA_OPTS: -Djava.security.egd=file:///dev/urandom
+  env:
+    #SPRING_PROFILES_ACTIVE: c2c
+    JAVA_OPTS: -Djava.security.egd=file:///dev/urandom
