@@ -13,18 +13,22 @@ test:
       params:
         git:
           uri: https://github.com/ciberkleid/app-config
+      useExisting: true
     - name: cloud-bus
       type: broker
       broker: cloudamqp
       plan: lemur
+      useExisting: true
     - name: service-registry
       type: broker
       broker: p-service-registry
       plan: standard
+      useExisting: true
     - name: circuit-breaker-dashboard
       type: broker
       broker: p-circuit-breaker-dashboard
       plan: standard
+      useExisting: true
 #    - type: stubrunner
 #      name: stubrunner-github-webhook
 #      coordinates: com.example.github:github-analytics-stub-runner-boot-classpath-stubs:0.0.1.M1
