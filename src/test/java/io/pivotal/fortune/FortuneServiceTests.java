@@ -16,7 +16,7 @@ import org.springframework.web.client.RestTemplate;
         properties = "spring.application.name=greeting-ui")
 @AutoConfigureStubRunner(ids = {"io.pivotal:fortune-service:1.0.0.M1-20171106_012934-VERSION:stubs:9876"},
 //@AutoConfigureStubRunner(ids = {"io.pivotal:fortune-service:0.0.1-SNAPSHOT:stubs:9876"},
-        repositoryRoot = "${REPO_WITH_JARS}"
+        repositoryRoot = "${REPO_WITH_BINARIES}"
         //workOffline = true,
         //stubsPerConsumer = true)
 )
