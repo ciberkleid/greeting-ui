@@ -29,10 +29,10 @@ test:
       broker: p-circuit-breaker-dashboard
       plan: standard
       useExisting: true
-#    - type: stubrunner
-#      name: stubrunner-github-webhook
-#      coordinates: com.example.github:github-analytics-stub-runner-boot-classpath-stubs:0.0.1.M1
-#      useClasspath: true
+    - name: stubrunner
+      type: stubrunner
+      coordinates: io.pivotal:cf-stubrunner:0.0.1.M1
+      manifestPath: sc-pipelines/manifest-stubrunner.yml
 
 stage:
   services:

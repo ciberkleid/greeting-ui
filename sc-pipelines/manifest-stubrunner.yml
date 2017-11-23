@@ -1,0 +1,10 @@
+---
+applications:
+# the name of stubrunner has to correspond to the one in sc-pipelines.yml
+- name: stubrunner
+  services:
+    - service-registry
+  env:
+    #SPRING_PROFILES_ACTIVE: c2c
+    TRUST_CERTS: api.run.pivotal.io
+    #DEBUG: "true"

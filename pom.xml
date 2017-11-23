@@ -30,7 +30,7 @@
     <!--<distribution.management.release.url>http://localhost:8081/artifactory/libs-release-local</distribution.management.release.url>-->
     <distribution.management.release.id>bintray</distribution.management.release.id>
     <distribution.management.release.url>https://api.bintray.com/maven/ciberkleid/maven-repo/greeting-ui</distribution.management.release.url>
-
+    <stubrunner.ids>io.pivotal:fortune-service:1.0.0.M1-20171106_012934-VERSION</stubrunner.ids>
   </properties>
 
   <dependencies>
@@ -66,6 +66,11 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-thymeleaf</artifactId>
       </dependency>
+    <dependency>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-starter-contract-stub-runner</artifactId>
+      <scope>test</scope>
+    </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>

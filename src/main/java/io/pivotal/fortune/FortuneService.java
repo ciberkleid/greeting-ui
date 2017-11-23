@@ -16,6 +16,8 @@ public class FortuneService {
   Logger logger = LoggerFactory
       .getLogger(FortuneService.class);
 
+  private String fortuneServiceUrl = "fortune-service";
+
   @Autowired
   public RestTemplate restTemplate;
 
@@ -27,7 +29,7 @@ public class FortuneService {
 
   @HystrixCommand(fallbackMethod = "defaultFortune")
   public String getFortune() {
-    String fortune = restTemplate.getForObject("http://fortune-service", String.class);
+    String fortune = restTemplate.getForObject("http://".concat(fortuneServiceUrl), String.class);
     return fortune;
   }
 
@@ -36,6 +38,12 @@ public class FortuneService {
     return "This fortune is no good. Try another.";
   }
 
+  void setFortuneServiceUrl(String url) {
+    this.fortuneServiceUrl=url;
+  }
 
+  public FortuneService(RestTemplate restTemplate) {
+    this.restTemplate = restTemplate;
+  }
 
 }
