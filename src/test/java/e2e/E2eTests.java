@@ -19,10 +19,13 @@ import java.util.concurrent.TimeUnit;
  * @author Marcin Grzejszczak
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = IntegrationTests.class,
-        webEnvironment = SpringBootTest.WebEnvironment.NONE)
+@SpringBootTest(classes = E2eTests.class,
+		webEnvironment = SpringBootTest.WebEnvironment.NONE)
 @EnableAutoConfiguration
-public class IntegrationTests {
+public class E2eTests {
+
+	//	hit /, check that 2xx and body does NOT contain “This fortune is no good. Try another.”
+	// also does NOT contain “The fortuneteller will be back soon.”
 
 	@Value("${application.url}") String applicationUrl;
 
@@ -34,8 +37,7 @@ public class IntegrationTests {
 				.getForEntity("http://" + this.applicationUrl + "/", String.class);
 
 		BDDAssertions.then(response.getStatusCodeValue()).isEqualTo(200);
-
-		BDDAssertions.then(response.getBody()).contains("foo fortune");
+		BDDAssertions.then(response.getBody()).doesNotContain("The fortuneteller will be back soon.").doesNotContain("This fortune is no good. Try another.");
 	}
 
 }

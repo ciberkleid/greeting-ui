@@ -132,8 +132,8 @@
                 <include>**/*Test.java</include>
               </includes>
               <excludes>
-                <exclude>**/smoke/**</exclude>
-                <exclude>**/e2e/**</exclude>
+                <exclude>**/smoke/**/*.*</exclude>
+                <exclude>**/e2e/**/*.*</exclude>
               </excludes>
             </configuration>
           </plugin>
@@ -162,17 +162,17 @@
       </activation>
       <build>
         <plugins>
-          <!--<plugin>-->
-            <!--<groupId>org.apache.maven.plugins</groupId>-->
-            <!--<artifactId>maven-surefire-plugin</artifactId>-->
-            <!--<version>${maven-surefire.version}</version>-->
-            <!--<configuration>-->
-              <!--&lt;!&ndash;<includes>&ndash;&gt;-->
-              <!--&lt;!&ndash;<include>**/contracttests/**/*Tests.java</include>&ndash;&gt;-->
-              <!--&lt;!&ndash;<include>**/contracttests/**/*Test.java</include>&ndash;&gt;-->
-              <!--&lt;!&ndash;</includes>&ndash;&gt;-->
-            <!--</configuration>-->
-          <!--</plugin>-->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>${maven-surefire.version}</version>
+            <configuration>
+              <includes>
+              <include>**/contracttests/**/*Tests.java</include>
+              <include>**/contracttests/**/*Test.java</include>
+              </includes>
+            </configuration>
+          </plugin>
           <!--<plugin>-->
           <!--<groupId>org.springframework.cloud</groupId>-->
           <!--<artifactId>spring-cloud-contract-maven-plugin</artifactId>-->
@@ -191,22 +191,22 @@
           <!--<basePackageForTests>com.example.contracttests</basePackageForTests>-->
           <!--</configuration>-->
           <!--</plugin>-->
-          <plugin>
-            <artifactId>maven-antrun-plugin</artifactId>
-            <executions>
-              <execution>
-                <phase>generate-resources</phase>
-                <goals>
-                  <goal>run</goal>
-                </goals>
-                <configuration>
-                  <target>
-                    <echo>Not yet implemented!</echo>
-                  </target>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
+          <!--<plugin>-->
+            <!--<artifactId>maven-antrun-plugin</artifactId>-->
+            <!--<executions>-->
+              <!--<execution>-->
+                <!--<phase>generate-resources</phase>-->
+                <!--<goals>-->
+                  <!--<goal>run</goal>-->
+                <!--</goals>-->
+                <!--<configuration>-->
+                  <!--<target>-->
+                    <!--<echo>Not yet implemented!</echo>-->
+                  <!--</target>-->
+                <!--</configuration>-->
+              <!--</execution>-->
+            <!--</executions>-->
+          <!--</plugin>-->
         </plugins>
       </build>
     </profile>
