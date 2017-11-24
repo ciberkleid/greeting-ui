@@ -3,6 +3,7 @@ package io.pivotal.fortune;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
@@ -16,12 +17,12 @@ public class FortuneService {
   Logger logger = LoggerFactory
       .getLogger(FortuneService.class);
 
-  String fortuneServiceUrl = "fortune-service";
+  private final String fortuneServiceUrl;
+  private final RestTemplate restTemplate;
 
-  private RestTemplate restTemplate;
-
-  public FortuneService(RestTemplate restTemplate) {
+  public FortuneService(RestTemplate restTemplate, @Value("${fortune.service.url:fortune-service}") String fortuneServiceUrl) {
     this.restTemplate = restTemplate;
+    this.fortuneServiceUrl = fortuneServiceUrl;
   }
 
   @HystrixCommand(fallbackMethod = "defaultFortune")
