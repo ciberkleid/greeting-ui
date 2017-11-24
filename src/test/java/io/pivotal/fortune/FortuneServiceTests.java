@@ -27,7 +27,7 @@ public class FortuneServiceTests {
     public void shouldSendRequestToFortune() {
         // given
         FortuneService fortuneService = new FortuneService(new RestTemplate());
-        fortuneService.setFortuneServiceUrl("localhost:9876");
+        fortuneService.fortuneServiceUrl = "localhost:9876";
         // when
         String fortune = fortuneService.getFortune();
         // then

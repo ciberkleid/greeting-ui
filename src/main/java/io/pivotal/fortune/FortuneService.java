@@ -16,15 +16,12 @@ public class FortuneService {
   Logger logger = LoggerFactory
       .getLogger(FortuneService.class);
 
-  private String fortuneServiceUrl = "fortune-service";
+  String fortuneServiceUrl = "fortune-service";
 
-  @Autowired
-  public RestTemplate restTemplate;
+  private RestTemplate restTemplate;
 
-  @Bean
-  @LoadBalanced
-  public RestTemplate restTemplate() {
-    return new RestTemplate();
+  public FortuneService(RestTemplate restTemplate) {
+    this.restTemplate = restTemplate;
   }
 
   @HystrixCommand(fallbackMethod = "defaultFortune")
@@ -36,14 +33,6 @@ public class FortuneService {
   public String defaultFortune(){
     logger.debug("Default fortune used.");
     return "This fortune is no good. Try another.";
-  }
-
-  void setFortuneServiceUrl(String url) {
-    this.fortuneServiceUrl=url;
-  }
-
-  public FortuneService(RestTemplate restTemplate) {
-    this.restTemplate = restTemplate;
   }
 
 }
