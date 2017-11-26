@@ -5,7 +5,6 @@ import io.pivotal.fortune.FortuneService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,8 +20,11 @@ public class GreetingController {
   Logger logger = LoggerFactory
       .getLogger(GreetingController.class);
 
-  @Autowired
-  private FortuneService fortuneService;
+  private final FortuneService fortuneService;
+
+  public GreetingController(FortuneService fortuneService) {
+    this.fortuneService = fortuneService;
+  }
 
   @RequestMapping("/")
   String getGreeting(Model model){
