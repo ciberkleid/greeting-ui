@@ -1,6 +1,7 @@
 ---
 applications:
 - name: greeting-ui
+  timeout: 120
   random-route: true
   path:  ./target/greeting-ui-0.0.1-SNAPSHOT.jar
   services:
@@ -8,3 +9,7 @@ applications:
   - cloud-bus
   - service-registry
   - circuit-breaker-dashboard
+  env:
+    #SPRING_PROFILES_ACTIVE: c2c
+    JAVA_OPTS: -Djava.security.egd=file:///dev/urandom
+    TRUST_CERTS: api.run.pivotal.io
