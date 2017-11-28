@@ -1,4 +1,4 @@
-package smoke;
+package e2e;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
