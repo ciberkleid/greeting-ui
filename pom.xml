@@ -24,7 +24,6 @@
     <java.version>1.8</java.version>
     <spring-cloud-services.version>1.5.0.RELEASE</spring-cloud-services.version>
     <spring-cloud.version>Dalston.SR4</spring-cloud.version>
-    <maven-surefire.version>2.20</maven-surefire.version>
     <distribution.management.release.id>bintray</distribution.management.release.id>
     <distribution.management.release.url>https://api.bintray.com/maven/ciberkleid/maven-repo/fortune-service</distribution.management.release.url>
   </properties>
@@ -115,7 +114,6 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-surefire-plugin</artifactId>
-            <version>${maven-surefire.version}</version>
             <configuration>
               <includes>
                 <include>**/*Tests.java</include>
@@ -141,7 +139,6 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-surefire-plugin</artifactId>
-            <version>${maven-surefire.version}</version>
             <configuration>
               <includes>
                 <include>smoke/**/*Tests.java</include>
@@ -159,7 +156,6 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-surefire-plugin</artifactId>
-            <version>${maven-surefire.version}</version>
             <configuration>
               <includes>
                 <include>e2e/**/*Tests.java</include>
@@ -177,7 +173,6 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-surefire-plugin</artifactId>
-            <version>${maven-surefire.version}</version>
             <configuration>
               <includes>
                 <include>**/contracttests/**/*Tests.java</include>
