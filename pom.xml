@@ -30,6 +30,7 @@
     <!--<distribution.management.release.url>http://localhost:8081/artifactory/libs-release-local</distribution.management.release.url>-->
     <distribution.management.release.id>bintray</distribution.management.release.id>
     <distribution.management.release.url>https://api.bintray.com/maven/ciberkleid/maven-repo/greeting-ui</distribution.management.release.url>
+    <!--Tell stubrunner app to start this stub listening on this port-->
     <stubrunner.ids>io.pivotal:fortune-service:1.0.0.M1-20171203_042512-VERSION:stubs:10000</stubrunner.ids>
   </properties>
 
@@ -157,9 +158,6 @@
     <!-- [PIPELINE] -->
     <profile>
       <id>apicompatibility</id>
-      <activation>
-        <activeByDefault>false</activeByDefault>
-      </activation>
       <build>
         <plugins>
           <plugin>
@@ -213,9 +211,6 @@
     <!-- [PIPELINE] -->
     <profile>
       <id>smoke</id>
-      <activation>
-        <activeByDefault>false</activeByDefault>
-      </activation>
       <build>
         <plugins>
           <plugin>
@@ -235,9 +230,6 @@
     <!-- [PIPELINE] -->
     <profile>
       <id>e2e</id>
-      <activation>
-        <activeByDefault>false</activeByDefault>
-      </activation>
       <build>
         <plugins>
           <plugin>
