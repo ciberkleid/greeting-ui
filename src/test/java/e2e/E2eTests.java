@@ -24,9 +24,6 @@ public class E2eTests {
 	Logger logger = LoggerFactory
 			.getLogger(E2eTests.class);
 
-	//	hit /, check that 2xx and body does NOT contain “This fortune is no good. Try another.”
-	// also does NOT contain “The fortuneteller will be back soon.”
-
 	@Value("${application.url}") String applicationUrl;
 
 	RestTemplate restTemplate = new RestTemplate();
@@ -36,9 +33,15 @@ public class E2eTests {
 		ResponseEntity<String> response = this.restTemplate
 				.getForEntity("http://" + this.applicationUrl + "/", String.class);
 
-		logger.info("Repsonse: [{}]", response);
+		logger.info("Response: [{}]", response);
 		BDDAssertions.then(response.getStatusCodeValue()).isEqualTo(200);
-		BDDAssertions.then(response.getBody()).doesNotContain("The fortuneteller will be back soon.").doesNotContain("This fortune is no good. Try another.");
+
+		// Filter out the known Hystrix fallback response
+		BDDAssertions.then(response.getBody()).doesNotContain("This fortune is no good. Try another.").doesNotContain("The fortuneteller will be back soon.");
 	}
 
 }
+
+
+
+
