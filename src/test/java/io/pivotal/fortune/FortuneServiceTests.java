@@ -14,14 +14,15 @@ import org.springframework.web.client.RestTemplate;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = TestConfig.class, webEnvironment = SpringBootTest.WebEnvironment.NONE,
         properties = "spring.application.name=greeting-ui")
-@AutoConfigureStubRunner(ids = {"io.pivotal:fortune-service:1.0.0.M1-20171203_042512-VERSION:stubs:9876"},
+@AutoConfigureStubRunner(ids = {"io.pivotal:fortune-service:1.0.0.M1-20171204_113308-VERSION:stubs:9876"},
+//@AutoConfigureStubRunner(ids = {"io.pivotal:fortune-service:+:stubs:9876"},
 //@AutoConfigureStubRunner(ids = {"io.pivotal:fortune-service:0.0.1-SNAPSHOT:stubs:9876"},
         repositoryRoot = "${REPO_WITH_BINARIES}"
         //workOffline = true,
         //stubsPerConsumer = true)
 )
-public class FortuneServiceTests {
 
+public class FortuneServiceTests {
 
     @Test
     public void shouldSendRequestToFortune() {
@@ -33,13 +34,11 @@ public class FortuneServiceTests {
         BDDAssertions.then(fortune).isEqualTo("foo fortune");
     }
 
-
-
 }
 
 @Configuration
 @EnableAutoConfiguration
 class TestConfig {
 
-
 }
+
