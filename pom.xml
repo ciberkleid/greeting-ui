@@ -24,6 +24,7 @@
     <java.version>1.8</java.version>
     <spring-cloud-services.version>1.5.0.RELEASE</spring-cloud-services.version>
     <spring-cloud.version>Dalston.SR4</spring-cloud.version>
+    <maven-surefire.version>2.20</maven-surefire.version>
     <distribution.management.release.id>bintray</distribution.management.release.id>
     <distribution.management.release.url>https://api.bintray.com/maven/ciberkleid/maven-repo/fortune-service</distribution.management.release.url>
   </properties>
@@ -103,5 +104,90 @@
     </plugins>
   </build>
 
+  <profiles>
+    <profile>
+      <id>default</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>${maven-surefire.version}</version>
+            <configuration>
+              <includes>
+                <include>**/*Tests.java</include>
+                <include>**/*Test.java</include>
+              </includes>
+              <excludes>
+                <exclude>**/smoke/**</exclude>
+                <exclude>**/e2e/**</exclude>
+              </excludes>
+            </configuration>
+          </plugin>
+          <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>smoke</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>${maven-surefire.version}</version>
+            <configuration>
+              <includes>
+                <include>smoke/**/*Tests.java</include>
+                <include>smoke/**/*Test.java</include>
+              </includes>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>e2e</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>${maven-surefire.version}</version>
+            <configuration>
+              <includes>
+                <include>e2e/**/*Tests.java</include>
+                <include>e2e/**/*Test.java</include>
+              </includes>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>apicompatibility</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>${maven-surefire.version}</version>
+            <configuration>
+              <includes>
+                <include>**/contracttests/**/*Tests.java</include>
+                <include>**/contracttests/**/*Test.java</include>
+              </includes>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 
 </project>
