@@ -3,6 +3,8 @@ package smoke;
 import org.assertj.core.api.BDDAssertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,18 +18,23 @@ import org.springframework.web.client.RestTemplate;
 @EnableAutoConfiguration
 public class SmokeTests {
 
-	@Value("${application.url}") String applicationUrl;
+    Logger logger = LoggerFactory
+            .getLogger(SmokeTests.class);
 
-	RestTemplate restTemplate = new RestTemplate();
+    @Value("${application.url}") String applicationUrl;
 
-	@Test
-	public void should_return_a_fallback_fortune() {
-		ResponseEntity<String> response = this.restTemplate
-				.getForEntity("http://" + this.applicationUrl + "/", String.class);
+    RestTemplate restTemplate = new RestTemplate();
 
-		BDDAssertions.then(response.getStatusCodeValue()).isEqualTo(200);
+    @Test
+    public void should_return_a_fallback_fortune() {
+        ResponseEntity<String> response = this.restTemplate
+                .getForEntity("http://" + this.applicationUrl + "/", String.class);
 
-		BDDAssertions.then(response.getBody()).contains("This fortune is no good. Try another.");
-	}
+        logger.info("Response: [{}]", response);
+        BDDAssertions.then(response.getStatusCodeValue()).isEqualTo(200);
+
+        // Expect the hystrix fallback response
+        BDDAssertions.then(response.getBody()).contains("This fortune is no good. Try another.");
+    }
 
 }
