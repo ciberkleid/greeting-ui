@@ -37,7 +37,7 @@ public class E2eTests {
 		BDDAssertions.then(response.getStatusCodeValue()).isEqualTo(200);
 
 		// Filter out the known Hystrix fallback response
-		BDDAssertions.then(response.getBody()).doesNotContain("This fortune is no good. Try another.").doesNotContain("The fortuneteller will be back soon.");
+		BDDAssertions.then(response.getBody()).doesNotContain("This fortune is no good. Try another.");
 	}
 
 }
