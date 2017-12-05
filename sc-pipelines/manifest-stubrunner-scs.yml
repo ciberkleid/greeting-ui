@@ -2,3 +2,8 @@
 applications:
 # the name of stubrunner has to correspond to the one in sc-pipelines manifest
 - name: stubrunner
+  services:
+    - service-registry
+  env:
+    TRUST_CERTS: api.run.pivotal.io
+    #DEBUG: "true"
