@@ -12,41 +12,29 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.client.RestTemplate;
 
-/**
- * @author Marcin Grzejszczak
- */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = E2eTests.class,
-		webEnvironment = SpringBootTest.WebEnvironment.NONE)
+        webEnvironment = SpringBootTest.WebEnvironment.NONE)
 @EnableAutoConfiguration
 public class E2eTests {
 
+    Logger logger = LoggerFactory
+            .getLogger(E2eTests.class);
 
-	// The app is running in CF but the tests are executed from Concourse worker,
-	// so the tests cannot retrieve the greeting-ui URL
-	// We will assume same host and replace app name
-	// (not compatible with c2c)
+    @Value("${application.url}") String applicationUrl;
 
-	Logger logger = LoggerFactory
-			.getLogger(E2eTests.class);
+    RestTemplate restTemplate = new RestTemplate();
 
-	@Value("${application.url}") String applicationUrl;
+    @Test
+    public void should_return_a_fortune() {
+        ResponseEntity<String> response = this.restTemplate
+                .getForEntity("http://" + this.applicationUrl + "/", String.class);
 
-	RestTemplate restTemplate = new RestTemplate();
+        logger.info("Response: [{}]", response);
+        BDDAssertions.then(response.getStatusCodeValue()).isEqualTo(200);
 
-	@Test
-	public void should_return_a_fortune() {
-		ResponseEntity<String> response = this.restTemplate
-				.getForEntity("http://" + this.applicationUrl.replace("fortune-service", "greeting-ui") + "/", String.class);
-
-		logger.info("Response: [{}]", response);
-		BDDAssertions.then(response.getStatusCodeValue()).isEqualTo(200);
-
-		// Filter out the known Hystrix fallback responses from both fortune and greeting
-		BDDAssertions.then(response.getBody()).doesNotContain("This fortune is no good. Try another.");
-	}
+        // Filter out the known Hystrix fallback response
+        BDDAssertions.then(response.getBody()).doesNotContain("This fortune is no good. Try another.");
+    }
 
 }
-
-
-
