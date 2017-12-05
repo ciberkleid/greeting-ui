@@ -12,9 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.client.RestTemplate;
 
-/**
- * @author Marcin Grzejszczak
- */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = E2eTests.class,
 		webEnvironment = SpringBootTest.WebEnvironment.NONE)
