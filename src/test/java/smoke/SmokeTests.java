@@ -10,9 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.client.RestTemplate;
 
-/**
- * @author Marcin Grzejszczak
- */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = SmokeTests.class,
         webEnvironment = SpringBootTest.WebEnvironment.NONE)
@@ -24,15 +21,14 @@ public class SmokeTests {
 	RestTemplate restTemplate = new RestTemplate();
 
 	@Test
-	public void should_return_a_fallback_fortune() {
+	public void should_return_a_fortune() {
 		ResponseEntity<String> response = this.restTemplate
 				.getForEntity("http://" + this.applicationUrl + "/", String.class);
 
 		BDDAssertions.then(response.getStatusCodeValue()).isEqualTo(200);
 
-		BDDAssertions.then(response.getBody()).contains("This fortune is no good. Try another.");
+		// Filter out the known Hystrix fallback response
+		BDDAssertions.then(response.getBody()).doesNotContain("This fortune is no good. Try another.");
 	}
 
 }
-
-
