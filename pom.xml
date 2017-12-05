@@ -25,9 +25,6 @@
     <spring-cloud-services.version>1.5.0.RELEASE</spring-cloud-services.version>
     <spring-cloud.version>Dalston.SR4</spring-cloud.version>
     <maven-surefire.version>2.20</maven-surefire.version>
-    <!-- [PIPELINE] -->
-    <!--<distribution.management.release.id>artifactory-local</distribution.management.release.id>-->
-    <!--<distribution.management.release.url>http://localhost:8081/artifactory/libs-release-local</distribution.management.release.url>-->
     <distribution.management.release.id>bintray</distribution.management.release.id>
     <distribution.management.release.url>https://api.bintray.com/maven/ciberkleid/maven-repo/greeting-ui</distribution.management.release.url>
     <!--Tell stubrunner app to start this stub listening on this port-->
