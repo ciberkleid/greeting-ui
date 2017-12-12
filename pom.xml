@@ -28,7 +28,7 @@
     <distribution.management.release.id>bintray</distribution.management.release.id>
     <distribution.management.release.url>https://api.bintray.com/maven/ciberkleid/maven-repo/greeting-ui</distribution.management.release.url>
     <!--Tell stubrunner app to start this stub listening on this port-->
-    <stubrunner.ids>io.pivotal:fortune-service:_latest:stubs:10000</stubrunner.ids>
+    <stubrunner.ids>io.pivotal:fortune-service:1.0.0.M1-20171212_182912-VERSION:stubs:10000</stubrunner.ids>
     <!--<stubrunner.ids>io.pivotal:fortune-service:1.0.0.M1-20171203_042512-VERSION:stubs:10000</stubrunner.ids>-->
   </properties>
 
