@@ -1,0 +1,5 @@
+#  ignore everything except files explicitly listed
+*
+!version
+!README.md
+!.gitignore
