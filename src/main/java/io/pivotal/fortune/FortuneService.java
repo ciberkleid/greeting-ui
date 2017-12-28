@@ -10,7 +10,7 @@ import org.springframework.web.client.RestTemplate;
 public class FortuneService {
 
   Logger logger = LoggerFactory
-      .getLogger(FortuneService.class);
+          .getLogger(FortuneService.class);
 
   private final RestTemplate restTemplate;
 
