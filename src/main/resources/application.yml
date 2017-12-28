@@ -6,5 +6,5 @@ management:
   security:
     enabled: false
 
-# if your laptop is so f... slow just set this value
+# my laptop is slow... delay hystrix kick-in for local tests
 hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 60000
