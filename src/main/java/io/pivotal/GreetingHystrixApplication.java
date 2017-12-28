@@ -16,14 +16,7 @@ public class GreetingHystrixApplication {
 
     @Bean
     @LoadBalanced
-    @Profile("!smoke")
     public RestTemplate restTemplate() {
-        return new RestTemplate();
-    }
-
-    @Bean
-    @Profile("smoke")
-    public RestTemplate stubRunnerRestTemplate() {
         return new RestTemplate();
     }
 

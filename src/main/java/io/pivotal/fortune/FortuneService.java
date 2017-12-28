@@ -14,17 +14,15 @@ public class FortuneService {
   Logger logger = LoggerFactory
       .getLogger(FortuneService.class);
 
-  private final String fortuneServiceUrl;
   private final RestTemplate restTemplate;
 
-  public FortuneService(RestTemplate restTemplate, @Value("${fortune.service.url:fortune-service}") String fortuneServiceUrl) {
+  public FortuneService(RestTemplate restTemplate) {
     this.restTemplate = restTemplate;
-    this.fortuneServiceUrl = fortuneServiceUrl;
   }
 
   @HystrixCommand(fallbackMethod = "defaultFortune")
   public String getFortune() {
-    String fortune = restTemplate.getForObject("http://".concat(fortuneServiceUrl), String.class);
+    String fortune = restTemplate.getForObject("http://fortune-service", String.class);
     return fortune;
   }
 
