@@ -29,11 +29,6 @@ test:
       broker: p-circuit-breaker-dashboard
       plan: standard
       useExisting: true
-#    - name: stubrunner
-#      type: stubrunner
-#      coordinates: io.pivotal:cf-stubrunner:0.0.1.M1
-#      manifestPath: sc-pipelines/manifest-stubrunner.yml
-
 stage:
   services:
     - name: config-server
