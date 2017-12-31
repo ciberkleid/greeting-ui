@@ -29,6 +29,7 @@ test:
       broker: p-circuit-breaker-dashboard
       plan: standard
       useExisting: true
+      
 stage:
   services:
     - name: config-server
