@@ -11,7 +11,7 @@ import org.springframework.web.client.RestTemplate;
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableCircuitBreaker
-public class GreetingHystrixApplication {
+public class GreetingUIApplication {
 
     @Bean
     @LoadBalanced
@@ -20,7 +20,7 @@ public class GreetingHystrixApplication {
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(GreetingHystrixApplication.class, args);
+        SpringApplication.run(GreetingUIApplication.class, args);
     }
  
 }

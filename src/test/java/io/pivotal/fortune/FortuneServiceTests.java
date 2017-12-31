@@ -1,6 +1,6 @@
 package io.pivotal.fortune;
 
-import io.pivotal.GreetingHystrixApplication;
+import io.pivotal.GreetingUIApplication;
 import org.assertj.core.api.BDDAssertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,7 +10,7 @@ import org.springframework.cloud.contract.stubrunner.spring.AutoConfigureStubRun
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = GreetingHystrixApplication.class, webEnvironment = SpringBootTest.WebEnvironment.NONE,
+@SpringBootTest(classes = GreetingUIApplication.class, webEnvironment = SpringBootTest.WebEnvironment.NONE,
         properties = "spring.application.name=greeting-ui")
 @AutoConfigureStubRunner(ids = {"io.pivotal:fortune-service:1.0.0.M1-20171212_182912-VERSION"},
 //@AutoConfigureStubRunner(ids = {"io.pivotal:fortune-service:+:stubs:9876"},
