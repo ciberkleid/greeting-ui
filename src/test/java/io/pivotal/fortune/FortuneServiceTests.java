@@ -12,7 +12,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = GreetingUIApplication.class, webEnvironment = SpringBootTest.WebEnvironment.NONE,
         properties = "spring.application.name=greeting-ui")
-@AutoConfigureStubRunner(ids = {"io.pivotal:fortune-service:1.0.0.M1-20171212_182912-VERSION"},
+@AutoConfigureStubRunner(ids = {"io.pivotal:fortune-service:+"},
 //@AutoConfigureStubRunner(ids = {"io.pivotal:fortune-service:+:stubs:9876"},
 //@AutoConfigureStubRunner(ids = {"io.pivotal:fortune-service:0.0.1-SNAPSHOT:stubs:9876"},
         repositoryRoot = "${REPO_WITH_BINARIES}"
