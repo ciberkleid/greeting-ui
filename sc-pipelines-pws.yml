@@ -32,7 +32,7 @@ test:
     - name: stubrunner
       type: stubrunner
       coordinates: io.pivotal:cloudfoundry-stub-runner-boot:0.0.1.M1
-      pathToManifest: sc-pipelines/manifest-stubrunner.yml
+      pathToManifest: sc-pipelines/manifest-stubrunner-pws.yml
 
 stage:
   services:
