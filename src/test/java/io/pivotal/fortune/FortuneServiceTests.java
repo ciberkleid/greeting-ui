@@ -11,7 +11,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = GreetingUIApplication.class, webEnvironment = SpringBootTest.WebEnvironment.NONE,
-        properties = "spring.application.name=greeting-ui")
+        properties = {"spring.application.name=greeting-ui", "spring.cloud.circuit.breaker.enabled=false", "hystrix.stream.queue.enabled=false"})
 @AutoConfigureStubRunner(ids = {"io.pivotal:fortune-service:1.0.0.M1-20180102_203542-VERSION"},
 //@AutoConfigureStubRunner(ids = {"io.pivotal:fortune-service:+:stubs:9876"},
 //@AutoConfigureStubRunner(ids = {"io.pivotal:fortune-service:0.0.1-SNAPSHOT:stubs:9876"},
