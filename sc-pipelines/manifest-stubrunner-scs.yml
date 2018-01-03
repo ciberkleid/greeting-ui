@@ -2,8 +2,11 @@
 applications:
 # the name of stubrunner has to correspond to the one in sc-pipelines manifest
 - name: stubrunner
+  timeout: 120
   services:
-    - service-registry
+  - service-registry
   env:
+    #SPRING_PROFILES_ACTIVE: c2c
+    JAVA_OPTS: -Djava.security.egd=file:///dev/urandom
     TRUST_CERTS: api.run.pivotal.io
     #DEBUG: "true"
