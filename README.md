@@ -1,5 +1,5 @@
 # greeting-ui
-Displays fortunes that it obtains from the backend service, fortune-service.
+Displays fortunes that it obtains from the backend service, [fortune-service](https://github.com/ciberkleid/fortune-service).
 
 ### Option 1: Script for quick & easy direct deployment to Cloud Foundry:
 
