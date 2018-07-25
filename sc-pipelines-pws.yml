@@ -9,7 +9,7 @@ test:
     - name: config-server
       type: broker
       broker: p-config-server
-      plan: standard
+      plan: trial
       params:
         git:
           uri: https://github.com/ciberkleid/app-config
@@ -22,12 +22,12 @@ test:
     - name: service-registry
       type: broker
       broker: p-service-registry
-      plan: standard
+      plan: trial
       useExisting: true
     - name: circuit-breaker-dashboard
       type: broker
       broker: p-circuit-breaker-dashboard
-      plan: standard
+      plan: trial
       useExisting: true
     - name: stubrunner
       type: stubrunner
@@ -39,7 +39,7 @@ stage:
     - name: config-server
       type: broker
       broker: p-config-server
-      plan: standard
+      plan: trial
       params:
         git:
           uri: https://github.com/ciberkleid/app-config
@@ -50,8 +50,8 @@ stage:
     - name: service-registry
       type: broker
       broker: p-service-registry
-      plan: standard
+      plan: trial
     - name: circuit-breaker-dashboard
       type: broker
       broker: p-circuit-breaker-dashboard
-      plan: standard
+      plan: trial
