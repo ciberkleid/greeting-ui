@@ -14,7 +14,7 @@ import org.springframework.web.client.RestTemplate;
 public class GreetingUIApplication {
 
     @Bean
-    @LoadBalanced
+    //@LoadBalanced
     public RestTemplate restTemplate() {
         return new RestTemplate();
     }
