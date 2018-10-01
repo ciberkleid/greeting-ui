@@ -1,10 +1,18 @@
-security:
-  basic:
-    enabled: false
-
 management:
-  security:
-    enabled: false
+  endpoints:
+    web:
+      exposure:
+        include: "*"
 
+spring:
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
+
+#fortuneServiceURL: http://fortune-service.apps.internal:8080
+
+ribbon:
+  eureka:
+    enabled: false
+    
 # my laptop is slow... delay hystrix kick-in for local tests
 #hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 60000
