@@ -1,0 +1,12 @@
+---
+applications:
+- name: greeting-ui
+  timeout: 120
+  path:  ./target/greeting-ui-0.0.1-SNAPSHOT.jar
+  services:
+  - config-server
+  - cloud-bus
+  - circuit-breaker-dashboard
+  env:
+    JAVA_OPTS: -Djava.security.egd=file:///dev/urandom
+    SPRING_PROFILES_ACTIVE: mesh
