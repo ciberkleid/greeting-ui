@@ -15,7 +15,7 @@ public class FortuneService {
 
   private final RestTemplate restTemplate;
 
-  @Value("${fortuneServiceURL:http://fortune-service}")
+  @Value("${fortuneServiceURL:https://fortune-service}")
   String fortuneServiceURL;
 
   public FortuneService(RestTemplate restTemplate) {
@@ -26,6 +26,7 @@ public class FortuneService {
   public String getFortune() {
     logger.debug("Using fortuneServiceURL=[{}]", fortuneServiceURL);
     String fortune = restTemplate.getForObject(fortuneServiceURL, String.class);
+    logger.debug("Got fortune=[{}]", fortune);
     return fortune;
   }
 
