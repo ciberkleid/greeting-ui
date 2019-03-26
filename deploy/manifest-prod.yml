@@ -1,0 +1,14 @@
+---
+applications:
+- name: greeting-ui
+  timeout: 120
+  services:
+  - config-server
+  - cloud-bus
+  - service-registry
+  - circuit-breaker-dashboard
+  env:
+    JAVA_OPTS: -Djava.security.egd=file:///dev/urandom
+    SPRING_PROFILES_ACTIVE=prod
+  routes:
+  - route: greeting-ui-cyi.apps.atherton.cf-app.com

@@ -1,0 +1,7 @@
+---
+serviceInstanceName: service-registry
+service: p-service-registry
+servicePlan: standard
+tags:
+- tag1
+updatable: false

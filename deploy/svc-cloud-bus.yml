@@ -1,0 +1,7 @@
+---
+serviceInstanceName: cloud-bus
+service: p-rabbitmq
+servicePlan: standard
+tags:
+- tag1
+updatable: false

@@ -1,0 +1,9 @@
+---
+serviceInstanceName: config-server
+service: p-config-server
+servicePlan: standard
+parameters: |
+  { "git": { "uri": "https://github.com/ciberkleid/app-config" } }
+tags:
+- tag1
+updatable: false

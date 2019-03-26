@@ -1,0 +1,7 @@
+---
+serviceInstanceName: circuit-breaker-dashboard
+service: p-circuit-breaker-dashboard
+servicePlan: standard
+tags:
+- tag1
+updatable: false
