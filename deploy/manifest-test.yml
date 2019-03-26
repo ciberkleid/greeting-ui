@@ -9,6 +9,6 @@ applications:
   - circuit-breaker-dashboard
   env:
     JAVA_OPTS: -Djava.security.egd=file:///dev/urandom
-    SPRING_PROFILES_ACTIVE=test
+    SPRING_PROFILES_ACTIVE: test
   routes:
   - route: greeting-ui-cyi-test.apps.atherton.cf-app.com
