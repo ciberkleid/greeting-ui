@@ -4,7 +4,8 @@ applications:
   services:
     - service-registry 
   env:
-    DEBUG: "true"
+    JAVA_OPTS: -Djava.security.egd=file:///dev/urandom
+#    DEBUG: "true"
   instances: 0
   routes:
   - route: greeting-ui-stubrunner-cyi-test.apps.atherton.cf-app.com
