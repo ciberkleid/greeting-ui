@@ -1,0 +1,10 @@
+---
+applications:
+- name: stubrunner
+  services:
+    - service-registry 
+  env:
+    DEBUG: "true"
+  instances: 0
+  routes:
+  - route: greeting-ui-stubrunner-cyi-test.apps.atherton.cf-app.com
