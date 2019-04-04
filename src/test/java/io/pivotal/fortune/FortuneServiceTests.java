@@ -16,8 +16,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 //@AutoConfigureStubRunner(ids = {"io.pivotal:fortune-service:10-78119a9bbde61510640ffc93beed4697e07f4ef0"},
 //@AutoConfigureStubRunner(ids = {"io.pivotal:fortune-service:+"},
 @AutoConfigureStubRunner(ids = {"${STUBRUNNER_IDS_FORTUNE_SERVICE}"},
-        repositoryRoot = "${REPO_WITH_BINARIES}",
-        stubsMode = StubRunnerProperties.StubsMode.REMOTE
+        repositoryRoot = "${REPO_WITH_BINARIES}"
+        //stubsMode = StubRunnerProperties.StubsMode.REMOTE
         //workOffline = true
 )
 
