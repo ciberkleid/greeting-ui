@@ -14,25 +14,20 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.0.7.RELEASE</version>
-    <relativePath/> <!-- lookup parent from repository -->
-  </parent>
+        <version>2.0.8.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
 
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <java.version>1.8</java.version>
-    <spring-cloud-services.version>2.0.3.RELEASE</spring-cloud-services.version>
-    <spring-cloud.version>Finchley.RELEASE</spring-cloud.version>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+        <spring-cloud-services.version>2.0.3.RELEASE</spring-cloud-services.version>
+        <spring-cloud.version>Finchley.SR2</spring-cloud.version>
         <distribution.management.release.id>bintray</distribution.management.release.id>
         <distribution.management.release.url>https://api.bintray.com/maven/ciberkleid/maven-repo/greeting-ui
         </distribution.management.release.url>
-        <!--Tell stubrunner app to start this stub-->
-        <!--<stubrunner.ids>${env.STUBRUNNER_IDS}</stubrunner.ids>-->
-        <stubrunner.ids>io.pivotal:fortune-service:9-78119a9bbde61510640ffc93beed4697e07f4ef0:stubs:10000</stubrunner.ids>
-        <!--Tell stubrunner app to start this stub listening on this port-->
-        <!--<stubrunner.ids>io.pivotal:fortune-service:1.0.0.M1-20171212_182912-VERSION:stubs:10000</stubrunner.ids>-->
-        <!--<stubrunner.ids>io.pivotal:fortune-service:+:stubs:10000</stubrunner.ids>-->
+        <!--Removed stubrunner.ids declarations. No longer needed (were used by cloud-foundry-stub-runner-boot app)-->
     </properties>
 
     <dependencies>
@@ -83,16 +78,16 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>io.pivotal.spring.cloud</groupId>
-                <artifactId>spring-cloud-services-dependencies</artifactId>
-                <version>${spring-cloud-services.version}</version>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
             <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring-cloud.version}</version>
+                <groupId>io.pivotal.spring.cloud</groupId>
+                <artifactId>spring-cloud-services-dependencies</artifactId>
+                <version>${spring-cloud-services.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
