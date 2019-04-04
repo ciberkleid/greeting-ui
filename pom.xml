@@ -28,7 +28,8 @@
         <distribution.management.release.url>https://api.bintray.com/maven/ciberkleid/maven-repo/greeting-ui
         </distribution.management.release.url>
         <!--Tell stubrunner app to start this stub-->
-        <stubrunner.ids>io.pivotal:fortune-service:1.0.0.M1-20180725_221358-VERSION:stubs:10000</stubrunner.ids>
+        <!--<stubrunner.ids>${env.STUBRUNNER_IDS}</stubrunner.ids>-->
+        <stubrunner.ids>io.pivotal:fortune-service:9-78119a9bbde61510640ffc93beed4697e07f4ef0:stubs:10000</stubrunner.ids>
         <!--Tell stubrunner app to start this stub listening on this port-->
         <!--<stubrunner.ids>io.pivotal:fortune-service:1.0.0.M1-20171212_182912-VERSION:stubs:10000</stubrunner.ids>-->
         <!--<stubrunner.ids>io.pivotal:fortune-service:+:stubs:10000</stubrunner.ids>-->
