@@ -27,6 +27,7 @@
         <distribution.management.release.id>bintray</distribution.management.release.id>
         <distribution.management.release.url>https://api.bintray.com/maven/ciberkleid/maven-repo/greeting-ui
         </distribution.management.release.url>
+        <stubrunner.snapshot-check-skip>true</stubrunner.snapshot-check-skip>
         <!--Removed stubrunner.ids declarations. No longer needed (were used by cloud-foundry-stub-runner-boot app)-->
     </properties>
 
