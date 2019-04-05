@@ -102,7 +102,7 @@
     </distributionManagement>
 
     <build>
-        <finalName>${project.artifactId}-${project.version}+${git.commit.id.describe-short}</finalName>
+        <finalName>${project.artifactId}-${project.version}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
