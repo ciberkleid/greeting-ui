@@ -30,6 +30,11 @@ public class FortuneService {
     return fortune;
   }
 
+  // for tests
+  void setFortuneServiceURL(String url) {
+    this.fortuneServiceURL = url;
+  }
+
   public String defaultFortune(Throwable throwable){
     logger.debug("Returning fallback fortune. Error: {}", throwable.getMessage());
     return "This fortune is no good. Try another.";
