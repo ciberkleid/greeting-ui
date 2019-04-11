@@ -1,4 +1,4 @@
-package smoke;
+package smokeDepracated;
 
 import org.assertj.core.api.BDDAssertions;
 import org.junit.Test;
