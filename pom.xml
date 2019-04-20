@@ -5,7 +5,7 @@
 
     <groupId>io.pivotal</groupId>
     <artifactId>greeting-ui</artifactId>
-    <version>1.0.0.RELEASE</version>
+    <version>1.0.0</version>
     <packaging>jar</packaging>
 
     <name>greeting-ui</name>
