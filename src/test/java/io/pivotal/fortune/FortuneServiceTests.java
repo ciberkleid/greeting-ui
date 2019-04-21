@@ -7,9 +7,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.cloud.contract.stubrunner.StubFinder;
 import org.springframework.cloud.contract.stubrunner.spring.AutoConfigureStubRunner;
 import org.springframework.cloud.contract.stubrunner.spring.StubRunnerProperties;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -21,12 +19,10 @@ import java.util.stream.Collectors;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = GreetingUIApplication.class, webEnvironment = SpringBootTest.WebEnvironment.NONE,
-//        properties = {"spring.application.name=greeting-ui", "fortuneServiceURL=http://fortune-service", "spring.cloud.circuit.breaker.enabled=false", "hystrix.stream.queue.enabled=false"})
         properties = {"spring.application.name=greeting-ui", "spring.cloud.discovery.enabled=false", "spring.cloud.service-registry.auto-registration.enabled=false", "eureka.client.enabled=false", "eureka.client.serviceUrl.registerWithEureka=false", "eureka.client.registerWithEureka=false", "eureka.client.fetchRegistry=false", "spring.cloud.circuit.breaker.enabled=false", "hystrix.stream.queue.enabled=false"})
-//@AutoConfigureStubRunner(ids = {"io.pivotal:fortune-service:10-78119a9bbde61510640ffc93beed4697e07f4ef0"},
-//@AutoConfigureStubRunner(ids = {"io.pivotal:fortune-service:+"},
 @AutoConfigureStubRunner(
-        // ids = {"${STUBRUNNER_IDS}"}, // set through system prop or env var
+        // ids = {"io.pivotal:fortune-service:+"}, // gets latest version from maven repo
+        // ids = {"${STUBRUNNER_IDS}"}, // will be set programmatically rather than through system prop or env var
         repositoryRoot = "${REPO_WITH_BINARIES}",
         stubsMode = StubRunnerProperties.StubsMode.REMOTE
         //workOffline = true
@@ -35,31 +31,27 @@ import java.util.stream.Collectors;
 public class FortuneServiceTests {
 
     // Expects:
-    //  env var Stubr ALL_STUBRUNNER_IDS with all x versions to test
+    //  env var Stubr STUBS with all x versions to test
+    //  format groupid:name:version,groupid2:name2:version2
 
-    Logger logger = LoggerFactory
-            .getLogger(FortuneService.class);
+    Logger logger = LoggerFactory.getLogger(FortuneServiceTests.class);
 
-    static final Map<String, Integer> stubs = new HashMap<String, Integer>();
+    static final Map<String, Integer> stubsMap = new HashMap<String, Integer>();
 
     @BeforeClass
     public static void setup() {
-        // name:version,name2:version2
-        String allStubs = System.getenv("ALL_STUBRUNNER_IDS");
-        String stubrunnerIds = Arrays.stream(allStubs.split(","))
+        String stubs = System.getenv("STUBS");
+        String stubrunnerIds = Arrays.stream(stubs.split(","))
                 .map(s -> {
-//                    String[] id = s.split(":");
-//                    String name = id[0];
-//                    String version = id[1];
                     int port = SocketUtils.findAvailableTcpPort(10000);
-//                    String stubId =  "io.pivotal:" + name + ":" + version + ":stubs:" + port;
                     String stubId =  s + ":stubs:" + port;
-                    stubs.put(stubId, port);
+                    stubsMap.put(stubId, port);
                     return stubId;
                 }).collect(Collectors.joining(","));
 
-        System.out.println("\n\n\nStubs map: " + stubs.toString() + "\n\n\n ");
+        System.out.println("\n\n\nStubs map: " + stubsMap.toString() + "\n\n\n ");
 
+        // Set system property so that it is detected by StbRunner auto-configuration
         System.setProperty("stubrunner.ids", stubrunnerIds);
 
     }
@@ -74,7 +66,7 @@ public class FortuneServiceTests {
 
         logger.info("\n\n\nGot stubrunner.ids: [{}]\n\n\n", System.getProperty("stubrunner.ids"));
 
-        List<AbstractMap.SimpleEntry> error = stubs.entrySet()
+        List<AbstractMap.SimpleEntry> error = stubsMap.entrySet()
                 .stream()
                 .filter(e -> e.getKey().contains("fortune-service"))
                 .map(e -> new AbstractMap.SimpleEntry<>(e.getKey(), e.getValue()))
@@ -101,7 +93,13 @@ public class FortuneServiceTests {
         .collect(Collectors.toList())
         ;
 
-        // TODO: add info about group id artifact id version and error
+        // Print summary of all errors
+        if (!error.isEmpty()) {
+            logger.error("{} of {} stub(s) resulted in failure", error.size(), stubsMap.size());
+            error.stream().forEach((e) -> logger.error("Stub [{}], Error: {}", e.getKey(), ((AssertionError)e.getValue()).getMessage()));
+        }
+
+        // Fail if any errors occurred
         BDDAssertions.then(error).isEmpty();
     }
 
