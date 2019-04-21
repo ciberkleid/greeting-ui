@@ -48,11 +48,12 @@ public class FortuneServiceTests {
         String allStubs = System.getenv("ALL_STUBRUNNER_IDS");
         String stubrunnerIds = Arrays.stream(allStubs.split(","))
                 .map(s -> {
-                    String[] id = s.split(":");
-                    String name = id[0];
-                    String version = id[1];
+//                    String[] id = s.split(":");
+//                    String name = id[0];
+//                    String version = id[1];
                     int port = SocketUtils.findAvailableTcpPort(10000);
-                    String stubId =  "io.pivotal:" + name + ":" + version + ":stubs:" + port;
+//                    String stubId =  "io.pivotal:" + name + ":" + version + ":stubs:" + port;
+                    String stubId =  s + ":stubs:" + port;
                     stubs.put(stubId, port);
                     return stubId;
                 }).collect(Collectors.joining(","));
