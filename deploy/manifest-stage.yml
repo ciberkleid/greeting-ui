@@ -9,5 +9,6 @@ applications:
   - circuit-breaker-dashboard
   env:
     JAVA_OPTS: -Djava.security.egd=file:///dev/urandom
+    SPRING_AUTOCONFIGURE_EXCLUDE: org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
   routes:
   - route: greeting-ui-cyi-stage.apps.atherton.cf-app.com
