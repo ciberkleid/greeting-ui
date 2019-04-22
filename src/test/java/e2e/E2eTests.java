@@ -27,6 +27,10 @@ public class E2eTests {
 		ResponseEntity<String> response = this.restTemplate
 				.getForEntity("http://" + this.applicationUrl + "/", String.class);
 
+		// allow a warmup call...
+		response = this.restTemplate
+				.getForEntity("http://" + this.applicationUrl + "/", String.class);
+
 		BDDAssertions.then(response.getStatusCodeValue()).isEqualTo(200);
 
 		// Filter out the known Hystrix fallback response
