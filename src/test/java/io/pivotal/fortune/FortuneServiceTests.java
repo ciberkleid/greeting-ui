@@ -44,6 +44,7 @@ public class FortuneServiceTests {
         String stubs = System.getenv("STUBS");
         String stubrunnerIds = Arrays.stream(stubs.split(","))
                 .map(s -> {
+                    s = s.trim();
                     int port = SocketUtils.findAvailableTcpPort(10000);
                     String stubId =  s + ":stubs:" + port;
                     stubsMap.put(stubId, port);
