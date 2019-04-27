@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: greeting-ui
+  cloud:
+    service-registry:
+      auto-registration:
+        enabled: false
+    discovery:
+        enabled: false
+
+eureka:
+  client:
+    fetch-registry: false
+    register-with-eureka: false
+    enabled: false
+
+hystrix:
+  stream:
+    queue:
+      enabled: false
+
+stubrunner:
+  stubs-mode: REMOTE
+  snapshot-check-skip: true
+

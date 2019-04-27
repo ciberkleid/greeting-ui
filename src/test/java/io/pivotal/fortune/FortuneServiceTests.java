@@ -18,17 +18,8 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = GreetingUIApplication.class, webEnvironment = SpringBootTest.WebEnvironment.NONE,
-        properties = {"spring.application.name=greeting-ui", "spring.cloud.discovery.enabled=false", "spring.cloud.service-registry.auto-registration.enabled=false", "eureka.client.enabled=false", "eureka.client.serviceUrl.registerWithEureka=false", "eureka.client.registerWithEureka=false", "eureka.client.fetchRegistry=false", "spring.cloud.circuit.breaker.enabled=false", "hystrix.stream.queue.enabled=false"}
-        )
-@AutoConfigureStubRunner(
-        // ids = {"io.pivotal:fortune-service:+"}, // gets latest version from maven repo
-        // ids = {"${STUBRUNNER_IDS}"}, // will be set programmatically rather than through system prop or env var
-        repositoryRoot = "${REPO_WITH_BINARIES}",
-        stubsMode = StubRunnerProperties.StubsMode.REMOTE
-        //workOffline = true
-        )
-
+@SpringBootTest(classes = GreetingUIApplication.class, webEnvironment = SpringBootTest.WebEnvironment.NONE)
+@AutoConfigureStubRunner(repositoryRoot = "${REPO_WITH_BINARIES}")
 public class FortuneServiceTests {
 
     // Expects:

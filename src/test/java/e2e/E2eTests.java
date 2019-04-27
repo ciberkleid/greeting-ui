@@ -11,10 +11,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.client.RestTemplate;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = E2eTests.class,
-		webEnvironment = SpringBootTest.WebEnvironment.NONE,
-		properties = {"spring.application.name=greeting-ui", "spring.cloud.discovery.enabled=false", "spring.cloud.service-registry.auto-registration.enabled=false", "eureka.client.enabled=false", "eureka.client.serviceUrl.registerWithEureka=false", "eureka.client.registerWithEureka=false", "eureka.client.fetchRegistry=false", "spring.cloud.circuit.breaker.enabled=false", "hystrix.stream.queue.enabled=false"}
-		)
+@SpringBootTest(classes = E2eTests.class, webEnvironment = SpringBootTest.WebEnvironment.NONE)
 @EnableAutoConfiguration
 public class E2eTests {
 
