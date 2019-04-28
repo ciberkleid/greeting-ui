@@ -20,6 +20,7 @@ hystrix:
       enabled: false
 
 stubrunner:
-  stubs-mode: REMOTE
   snapshot-check-skip: true
-
+  stubs-mode: REMOTE
+  repositoryRoot: https://dl.bintray.com/ciberkleid/maven-repo
+#  repositoryRoot: https://ciberkleid:${M2_SETTINGS_REPO_PASSWORD}@dl.bintray.com/ciberkleid/maven-repo

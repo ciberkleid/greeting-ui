@@ -9,7 +9,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.cloud.contract.stubrunner.spring.AutoConfigureStubRunner;
-import org.springframework.cloud.contract.stubrunner.spring.StubRunnerProperties;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.util.SocketUtils;
 import org.springframework.web.client.RestTemplate;
@@ -19,7 +18,8 @@ import java.util.stream.Collectors;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = GreetingUIApplication.class, webEnvironment = SpringBootTest.WebEnvironment.NONE)
-@AutoConfigureStubRunner(repositoryRoot = "${REPO_WITH_BINARIES}")
+@AutoConfigureStubRunner    // Use mvnw with -Dstubrunner.ids and -Dstubrunner.repositoryRoot to download stubs from remote repo
+                            // Use mvnw with -Dstubrunner.ids and -Dstubrunner.stubs-mode=LOCAL to use stubs in local M2 repo
 public class FortuneServiceTests {
 
     // Expects:
@@ -32,11 +32,11 @@ public class FortuneServiceTests {
 
     @BeforeClass
     public static void setup() {
-        String stubs = System.getenv("STUBS");
+        String stubs = System.getProperty("stubrunner.ids");
         String stubrunnerIds = Arrays.stream(stubs.split(","))
                 .map(s -> {
                     s = s.trim();
-                    int port = SocketUtils.findAvailableTcpPort(10000);
+                    int port = SocketUtils.findAvailableTcpPort(10000, 15000);
                     String stubId =  s + ":stubs:" + port;
                     stubsMap.put(stubId, port);
                     return stubId;
@@ -97,4 +97,3 @@ public class FortuneServiceTests {
     }
 
 }
-
