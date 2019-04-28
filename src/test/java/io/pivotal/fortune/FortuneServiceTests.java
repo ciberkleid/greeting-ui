@@ -18,8 +18,9 @@ import java.util.stream.Collectors;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = GreetingUIApplication.class, webEnvironment = SpringBootTest.WebEnvironment.NONE)
-@AutoConfigureStubRunner    // Use mvnw with -Dstubrunner.ids and -Dstubrunner.repositoryRoot to download stubs from remote repo
-                            // Use mvnw with -Dstubrunner.ids and -Dstubrunner.stubs-mode=LOCAL to use stubs in local M2 repo
+@AutoConfigureStubRunner(repositoryRoot = "${repo.with.binaries}")
+        // Use mvnw with -Dstubrunner.ids and -Drepo.with.binaries to download stubs from remote repo
+        // Use mvnw with -Dstubrunner.ids and -Dstubrunner.stubs-mode=LOCAL to use stubs in local M2 repo
 public class FortuneServiceTests {
 
     // Expects:
