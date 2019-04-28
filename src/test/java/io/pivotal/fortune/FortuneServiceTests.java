@@ -33,7 +33,7 @@ public class FortuneServiceTests {
 
     @BeforeClass
     public static void setup() {
-        String stubs = System.getProperty("stubrunner.ids");
+        String stubs = System.getenv("STUBS");
         String stubrunnerIds = Arrays.stream(stubs.split(","))
                 .map(s -> {
                     s = s.trim();
