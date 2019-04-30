@@ -26,7 +26,7 @@ public class E2eTests {
 
 		// allow a warmup call...
 		response = this.restTemplate
-				.getForEntity("http://" + this.applicationUrl + "/", String.class);
+				.getForEntity("http://" + this.applicationUrl + "/fortune", String.class);
 
 		BDDAssertions.then(response.getStatusCodeValue()).isEqualTo(200);
 

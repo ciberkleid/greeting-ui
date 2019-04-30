@@ -69,7 +69,7 @@ public class FortuneServiceTests {
                 .map(e -> {
                     logger.info("\n\n\nRunning contract test for [{}]\n\n\n", e.getKey());
                     int port = e.getValue();
-                    fortuneService.setFortuneServiceURL("http://localhost:" + port);
+                    fortuneService.setFortuneServiceURL("http://localhost:" + port + "/fortune");
 
                     // when
                     String fortune = fortuneService.getFortune();
