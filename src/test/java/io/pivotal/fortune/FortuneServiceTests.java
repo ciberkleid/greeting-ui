@@ -11,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.cloud.contract.stubrunner.spring.AutoConfigureStubRunner;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.util.SocketUtils;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.*;
@@ -19,8 +20,8 @@ import java.util.stream.Collectors;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = GreetingUIApplication.class, webEnvironment = SpringBootTest.WebEnvironment.NONE)
 @AutoConfigureStubRunner(repositoryRoot = "${repo.with.binaries}")
-        // Use mvnw with -Dstubrunner.ids and -Drepo.with.binaries to download stubs from remote repo
-        // Use mvnw with -Dstubrunner.ids and -Dstubrunner.stubs-mode=LOCAL to use stubs in local M2 repo
+        // Use mvnw with STUBS env var and -Drepo.with.binaries to download stubs from remote repo
+        // Use mvnw with STUBS env var and -Dstubrunner.stubs-mode=LOCAL to use stubs in local M2 repo
 public class FortuneServiceTests {
 
     // Expects:
@@ -69,13 +70,25 @@ public class FortuneServiceTests {
                 .map(e -> {
                     logger.info("\n\n\nRunning contract test for [{}]\n\n\n", e.getKey());
                     int port = e.getValue();
-                    fortuneService.setFortuneServiceURL("http://localhost:" + port + "/fortune");
+                    fortuneService.setFortuneServiceURL("http://localhost:" + port);
 
                     // when
-                    String fortune = fortuneService.getFortune();
+                    List<String> fortunes = new ArrayList<>();
+                    try {
+                        fortunes.add(fortuneService.getFortune());
+                    } catch (Exception e1) {
+                        logger.warn("getFortune() failed with exception [{}]", e1.getMessage());
+                    }
+                    try {
+                        fortunes.add(fortuneService.fallbackFortuneAPI(new Throwable()));
+                    }
+                    catch (Exception e2) {
+                        logger.warn("fallbackFortuneAPI() failed with exception [{}]", e2.getMessage());
+                    }
+
                     // then
                     try {
-                        BDDAssertions.then(fortune).isEqualTo("foo fortune");
+                        BDDAssertions.then(fortunes).contains("foo fortune");
                         return null;
                     } catch (AssertionError er) {
                         logger.error("\n\n\nContract test failed. Stub: [{}], Error: [{}]\n\n\n", e.getKey(), er.getMessage());
