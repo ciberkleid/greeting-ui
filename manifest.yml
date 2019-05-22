@@ -10,8 +10,3 @@ applications:
   - circuit-breaker-dashboard
   env:
     JAVA_OPTS: -Djava.security.egd=file:///dev/urandom
-
-# The deployment script in github.com/ciberkleid/cna-demo-setup
-# will optionally set the following options as well:
-#    --random-route
-#    SPRING_PROFILES_ACTIVE (possible values: c2c or mesh, flyway or ddlupdate)
