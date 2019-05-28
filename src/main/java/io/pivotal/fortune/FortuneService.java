@@ -16,7 +16,7 @@ public class FortuneService {
 
   private final RestTemplate restTemplate;
 
-  @Value("${fortuneServiceURLV1:https://fortune-service}")
+  @Value("${fortuneServiceURL:https://fortune-service}")
   String fortuneServiceURL;
 
   public FortuneService(RestTemplate restTemplate) {
